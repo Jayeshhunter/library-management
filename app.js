@@ -107,8 +107,6 @@ app.post("/", isLoggedIn, async (req, res) => {
       );
     });
 
-  console.log("Her wee goo");
-
   req.body.books.map((x) => {
     console.log(x.bookName);
     Book.findOneAndUpdate(
@@ -124,7 +122,7 @@ app.post("/", isLoggedIn, async (req, res) => {
     );
   });
 });
-// need to check all everything properly
+
 app.get("/addBooks", isLoggedIn, (req, res) => {
   res.render("addBooks", {
     name: req.user.displayName,
@@ -132,7 +130,6 @@ app.get("/addBooks", isLoggedIn, (req, res) => {
 });
 app.get("/allIssues", isLoggedIn, (req, res) => {
   Issue.find({}, (err, result) => {
-    // console.log("Heeeeeee" + result);
     res.render("allIssues", {
       name: req.user.displayName,
       arr: result,
@@ -152,9 +149,7 @@ app.post("/allIssues", (req, res) => {
       console.log("Here is the problembro");
       console.log(valu);
       console.log(email);
-      //   console.log(data);
 
-      // changes need to be made here
       data[0].books.map((x, index) => {
         if (index !== +valu) {
           ar2.push(x);
